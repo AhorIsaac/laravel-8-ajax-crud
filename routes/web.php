@@ -21,3 +21,10 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/students', [StudentController::class, 'index']);
+Route::post('/add-student', [StudentController::class, 'addStudent'])->name('student.add');
+Route::get('/students/{id}', [StudentController::class, 'getStudentById']);
+Route::put('/student', [StudentController::class, 'updateStudent'])->name('student.update');
+Route::delete('/students/{id}', [StudentController::class, 'deleteStudent']);
+Route::delete('/selected-students', [StudentController::class, 'deleteCheckedStudents'])->name('students.deleteSelected');
